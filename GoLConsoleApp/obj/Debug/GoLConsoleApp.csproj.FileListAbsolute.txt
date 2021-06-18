@@ -1,0 +1,6 @@
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\bin\Debug\GoLConsoleApp.exe
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\bin\Debug\GoLConsoleApp.pdb
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\obj\Debug\GoLConsoleApp.csproj.CoreCompileInputs.cache
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\obj\Debug\GoLConsoleApp.exe
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\obj\Debug\GoLConsoleApp.pdb
+D:\Rafif\Project\Programing\Github Thing\seniorkiller\seniorkiller-GoL\GoLConsoleApp\obj\Debug\GoLConsoleApp.csproj.AssemblyReference.cache
