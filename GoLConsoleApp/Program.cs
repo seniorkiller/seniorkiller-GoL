@@ -14,6 +14,21 @@ namespace GoLConsoleApp
         {
             int n = 1000;
             int time = 100;
+            Console.WriteLine("The Acorn");
+            string s=Console.ReadLine();
+
+            if (s == "yes") 
+            {
+                Console.WriteLine("\n\nHow many Generation you want to play?");
+                n = Convert.ToInt32(Console.ReadLine());
+
+
+                Console.WriteLine("\nHow many Generation You want to play per secon");
+                int time1 = Convert.ToInt32(Console.ReadLine());
+                time = 1000 / time1;
+            }
+
+            
             int[] Grid ={
                 0,1,0,0,0,0,0 ,
                 0,0,0,1,0,0,0 ,
@@ -25,17 +40,22 @@ namespace GoLConsoleApp
             
 
             string message = GridManager.MakeScreen(boolGrid, rad);
+            Console.Clear();
             Console.WriteLine(message);
+            Thread.Sleep(3000);
             Stopwatch stopwatch = new Stopwatch();            
             for (int i = 0; i < n; i++)
             {
+                
                 stopwatch.Reset();
-                bool[,] newBoolgrid = GridManager.DoGoL(boolGrid);               
-                stopwatch.Stop();
-                Console.WriteLine(stopwatch.ElapsedMilliseconds);
-                Thread.Sleep(time - (int)stopwatch.ElapsedMilliseconds);
-                Console.WriteLine(GridManager.MakeScreen(newBoolgrid, rad));
+                stopwatch.Start();
+                bool[,] newBoolgrid = GridManager.DoGoL(boolGrid);
+                string s1 = GridManager.MakeScreen(newBoolgrid, rad);
+                Console.Clear();
+                Console.Write(s1);
                 boolGrid = newBoolgrid;
+                stopwatch.Stop();
+                
 
             }
 

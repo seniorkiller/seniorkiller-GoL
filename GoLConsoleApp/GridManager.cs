@@ -38,7 +38,7 @@ namespace GoLConsoleApp
 
                 for (int ix = 0; ix < radius; ix++)
                 {
-                    string aaa = Grid[ix, iy] ? "X" : " ";
+                    string aaa = Grid[ix, iy] ? "0" : " ";
                     text = text + aaa + " ";
                 }
 
