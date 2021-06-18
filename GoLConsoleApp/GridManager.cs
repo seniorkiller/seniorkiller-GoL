@@ -53,67 +53,74 @@ namespace GoLConsoleApp
             return text;
         }
 
-        public static bool[,] DoGoL(bool[,] Boolgrid)
+        public static bool[,] DoGoL(int[,] grid,bool[,] boolgrid)
         {
-            int x = Boolgrid.GetUpperBound(0);
-            int y = Boolgrid.GetUpperBound(1);
-            bool[,] newBoolgrid = new bool[x+1, y+1];
+            int x = grid.GetUpperBound(0);
+            int y = grid.GetUpperBound(1);            
 
             for (int iy = 0; iy < y; iy++)
             {
-                for (int ix = 0; ix < y; ix++)
+                for (int ix = 0; ix < x; ix++)
                 {
-                    newBoolgrid[ix, iy] = GoLlogic(Boolgrid, ix, iy);
+                    boolgrid[ix,iy] = GoLlogic(grid, boolgrid[ix,iy], ix, iy);
+
                 }
-
             }
-
-            return newBoolgrid;
+            return boolgrid;
         }
 
-        public static bool GoLlogic(bool[,] grid , int ix, int iy)
-        {            
-            
-            
-            if (grid[ix, iy])
+        public static bool GoLlogic(int[,] grid, bool alive,int x,int y)
+        {
+                        
+            if (alive)
             {
-                if (GetTrueNum(grid, ix, iy) == 2 || GetTrueNum(grid, ix, iy) == 3)
+                if (grid[x, y] == 2 || grid[x, y] == 3)
                 {
                     return true;
                 }
                 return false;
             }
-            if (!grid[ix, iy])
+            if (!alive)
             {
-                if (GetTrueNum(grid, ix, iy) != 3)
+                if (grid[x, y] == 3)
                 {
-                    return false;
+                    return true;
                 }
-                return true;
+                return false;
             }
             return false;
-            
-               
-                
 
-
-
-            
         }
-
-        public static int GetTrueNum(bool[,] grid,int x,int y)
+        public static int[,] MakeNumGrid(bool[,] grid)
         {
-            int num = 0;
-            int m = 0;
-            for (int iy=0; iy < 3; iy++)
+            int x = grid.GetUpperBound(0);
+            int y = grid.GetUpperBound(1);
+            int[,] intgrid = new int[x, y];
+            for (int iy = 0; iy < y; iy++)
             {
-                for (int ix=0; ix < 3; ix++)
+                for (int ix = 0; ix < x; ix++)
                 {
-                    try { num += grid[x - 1 + ix, y - 1 + iy] ? 1 : 0; } catch { m++; }
+                    if (grid[ix, iy]) 
+                    {
+                        IncrementNear(intgrid, ix, iy);
+                        intgrid[ix, iy]--;
+                    }
                 }
             }
-            num -= grid[x, y] ? 1 : 0;
-            return num;
+            return intgrid;
+        }
+
+        public static void IncrementNear(int[,] grid,int x,int y)
+        {
+
+            for (int iy = 0; iy < 3; iy++)
+            {
+                for (int ix = 0; ix < 3; ix++)
+                {
+                    try { grid[x + ix - 1, y + iy - 1]++; } catch { }
+                    
+                }
+            }            
         }
 
         public static int GetMid(int radius)

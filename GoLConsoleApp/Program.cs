@@ -13,7 +13,7 @@ namespace GoLConsoleApp
         static void Main(string[] args)
         {
             int n = 1000;
-            int time = 100;
+            int time = 10;
             Console.WriteLine("The Acorn");
             string s=Console.ReadLine();
 
@@ -35,11 +35,11 @@ namespace GoLConsoleApp
                 1,1,0,0,1,1,1 };
             int[] GridDim = { 7, 3 };
             int rad = 30;
-            bool[,] boolGrid = GridManager.MakeSBool(Grid, GridDim[0], GridDim[1], rad);
-
+            bool[,] boolgrid = GridManager.MakeSBool(Grid, GridDim[0], GridDim[1], rad);
+            int[,] intgrid=new int[rad,rad];
             
 
-            string message = GridManager.MakeScreen(boolGrid, rad);
+            string message = GridManager.MakeScreen(boolgrid, rad);
             Console.Clear();
             Console.WriteLine(message);
             Thread.Sleep(3000);
@@ -49,12 +49,16 @@ namespace GoLConsoleApp
                 
                 stopwatch.Reset();
                 stopwatch.Start();
-                bool[,] newBoolgrid = GridManager.DoGoL(boolGrid);
-                string s1 = GridManager.MakeScreen(newBoolgrid, rad);
+
+                intgrid = GridManager.MakeNumGrid(boolgrid);
+                boolgrid=GridManager.DoGoL(intgrid, boolgrid);
+
+                message = GridManager.MakeScreen(boolgrid, rad);
+
                 Console.Clear();
-                Console.Write(s1);
-                boolGrid = newBoolgrid;
+                Console.WriteLine(message);
                 stopwatch.Stop();
+                Thread.Sleep(time);
                 
 
             }
